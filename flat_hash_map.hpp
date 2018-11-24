@@ -1431,6 +1431,12 @@ public:
         return insert_or_assign(std::move(key), std::forward<M>(m)).first;
     }
 
+    template<typename T>
+    bool contains(const T value) const
+    {
+        return find(value) != end();
+    }
+
     friend bool operator==(const flat_hash_map & lhs, const flat_hash_map & rhs)
     {
         if (lhs.size() != rhs.size())
@@ -1514,6 +1520,12 @@ public:
     std::pair<typename Table::iterator, bool> emplace(key_type && arg)
     {
         return Table::emplace(std::move(arg));
+    }
+
+    template<typename T>
+    bool contains(const T value) const
+    {
+        return find(value) != end();
     }
 
     friend bool operator==(const flat_hash_set & lhs, const flat_hash_set & rhs)
